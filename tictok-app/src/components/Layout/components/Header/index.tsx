@@ -5,18 +5,22 @@ import {
   faCircleXmark,
   faSpinner,
   faMagnifyingGlass,
+  faSignIn,
+  faSign,
+  faRegistered,
 } from "@fortawesome/free-solid-svg-icons";
 import Tippy from "@tippyjs/react/headless";
 
+import Button from "../../../Button";
 import { Wrapper as PopperWrapper } from "../../../../components/Popper";
 import styles from "./Header.module.scss";
 import images from "../../../../assets/images";
 import AccountItem from "../../../AccountItem";
+import { faReadme } from "@fortawesome/free-brands-svg-icons";
 
 export interface IHeaderProps {}
 
 const cx = classNames.bind(styles);
-console.log("image: ", images.logo);
 
 export default function Header(props: IHeaderProps) {
   const [searchResult, setSearchResult] = useState<any[]>([]);
@@ -72,7 +76,16 @@ export default function Header(props: IHeaderProps) {
         </Tippy>
 
         {/* features */}
-        <div className={cx("features-container")}></div>
+        <div className={cx("actions")}>
+          <Button text>Upload</Button>
+          <Button
+            primary
+            // leftIcon={<FontAwesomeIcon icon={faSignIn} />}
+            // rightIcon={<FontAwesomeIcon icon={faRegistered} />}
+          >
+            Log in
+          </Button>
+        </div>
       </div>
     </header>
   );
