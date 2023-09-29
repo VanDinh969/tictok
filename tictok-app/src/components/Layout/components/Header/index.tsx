@@ -19,6 +19,7 @@ import images from "../../../../assets/images";
 import AccountItem from "../../../AccountItem";
 import Menu from "../../../Popper/Menu";
 import { IItem } from "../../../Popper/Menu/MenuItem";
+import { title } from "process";
 
 export interface IHeaderProps {}
 
@@ -28,6 +29,19 @@ const MENU_ITEMS: IItem[] = [
   {
     icon: <FontAwesomeIcon icon={faEarthAsia} />,
     title: "English",
+    child: {
+      title: "Language",
+      data: [
+        {
+          code: "en",
+          title: "English",
+        },
+        {
+          code: "vi",
+          title: "Tiếng Việt",
+        },
+      ],
+    },
   },
   {
     icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -47,6 +61,12 @@ export default function Header(props: IHeaderProps) {
       setSearchResult([]);
     }, 0);
   }, []);
+
+  // handle logic
+  const handleMenuChange = (menuItem: any) => {
+    console.log(menuItem);
+  };
+
   return (
     <header className={cx("wrapper")}>
       <div className={cx("inner")}>
@@ -103,7 +123,10 @@ export default function Header(props: IHeaderProps) {
           >
             Log in
           </Button>
-          <Menu items={MENU_ITEMS}>
+          <Menu
+            items={MENU_ITEMS}
+            onChange={(menuItem: any) => handleMenuChange(menuItem)}
+          >
             <button className={cx("more-btn")}>
               <FontAwesomeIcon icon={faEllipsisVertical} />
             </button>
