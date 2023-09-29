@@ -5,9 +5,10 @@ import {
   faCircleXmark,
   faSpinner,
   faMagnifyingGlass,
-  faSignIn,
-  faSign,
-  faRegistered,
+  faEllipsisVertical,
+  faEarthAsia,
+  faCircleQuestion,
+  faKeyboard,
 } from "@fortawesome/free-solid-svg-icons";
 import Tippy from "@tippyjs/react/headless";
 
@@ -16,11 +17,28 @@ import { Wrapper as PopperWrapper } from "../../../../components/Popper";
 import styles from "./Header.module.scss";
 import images from "../../../../assets/images";
 import AccountItem from "../../../AccountItem";
-import { faReadme } from "@fortawesome/free-brands-svg-icons";
+import Menu from "../../../Popper/Menu";
+import { IItem } from "../../../Popper/Menu/MenuItem";
 
 export interface IHeaderProps {}
 
 const cx = classNames.bind(styles);
+
+const MENU_ITEMS: IItem[] = [
+  {
+    icon: <FontAwesomeIcon icon={faEarthAsia} />,
+    title: "English",
+  },
+  {
+    icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+    title: "Feedback and help",
+    to: "/feedback",
+  },
+  {
+    icon: <FontAwesomeIcon icon={faKeyboard} />,
+    title: "Keyboard shortcuts",
+  },
+];
 
 export default function Header(props: IHeaderProps) {
   const [searchResult, setSearchResult] = useState<any[]>([]);
@@ -85,6 +103,11 @@ export default function Header(props: IHeaderProps) {
           >
             Log in
           </Button>
+          <Menu items={MENU_ITEMS}>
+            <button className={cx("more-btn")}>
+              <FontAwesomeIcon icon={faEllipsisVertical} />
+            </button>
+          </Menu>
         </div>
       </div>
     </header>
